@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signInStart } from '../../redux/user/userSlice';
-import { signInSuccuss } from '../../redux/user/userSlice';
+import { signInSuccess } from '../../redux/user/userSlice';
 import { signInFailure } from '../../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 export default function Signin() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
@@ -43,7 +44,7 @@ export default function Signin() {
      // console.log("exe")
         setLoading(false);
         setError(null);
-      //dispatch(signInSuccuss()); // Assuming you have a signInSuccess action
+      dispatch(signInSuccess()); // Assuming you have a signInSuccess action
       navigate('/');
     } catch (error) {
       //setError(error.message);
@@ -62,6 +63,7 @@ export default function Signin() {
         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-85'>
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <OAuth/>
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Don't have an account?</p>
